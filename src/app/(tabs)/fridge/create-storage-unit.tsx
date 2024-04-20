@@ -8,9 +8,10 @@ import { StorageUnitRepository } from "@/src/database/repository/StorageUnitRepo
 
 const CreateStorageUnitScreen = () => {
   const navigation = useNavigation();
-
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+
+  const isDisabled = name.length === 0 && description.length === 0;
 
   const handleOnPress = () => {
     const newStorageUnit = new StorageUnit(
@@ -24,8 +25,6 @@ const CreateStorageUnitScreen = () => {
 
     navigation.goBack();
   };
-
-  const isDisabled = name.length === 0 && description.length === 0;
 
   return (
     <View style={styles.container}>
