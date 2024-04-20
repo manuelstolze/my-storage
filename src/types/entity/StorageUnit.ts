@@ -6,7 +6,12 @@ class StorageUnit extends BasicEntity {
   private container: Array<StorageContainer> = [];
   private storageType: StorageType;
 
-  constructor(description: string, location: string, storageType: StorageType) {
+  constructor(
+    description: string,
+    location: string,
+    storageType: StorageType,
+    id?: string,
+  ) {
     super();
 
     this.description = description;

@@ -90,7 +90,12 @@ class StorageUnitRepository implements BaseRepository<StorageUnit> {
 
             let storageUnits = resultSet.rows._array.map(
               (row) =>
-                new StorageUnit(row.description, row.location, row.storageType),
+                new StorageUnit(
+                  row.location,
+                  row.description,
+                  row.storageType,
+                  row.id,
+                ),
             );
             resolve(storageUnits);
           },
