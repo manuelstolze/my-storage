@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
 
-export default function FridgeStack() {
+export default function UnitStorageStack() {
   return <Stack />;
 }

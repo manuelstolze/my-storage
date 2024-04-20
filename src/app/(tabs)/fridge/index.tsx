@@ -1,31 +1,39 @@
-import { FlatList, Pressable, StyleSheet, View } from "react-native";
-import { Link, Stack, useFocusEffect } from "expo-router";
-import fridgeDataset from "@assets/data/fridge";
-import { FridgeListItem } from "@components/fridge/FridgeListItem";
+import { FlatList, StyleSheet, View } from "react-native";
+import { Link, Stack } from "expo-router";
+import { StorageUnitListItem } from "@components/fridge/StorageUnitListItem";
 import Button from "@components/Button";
-import { navigate } from "expo-router/build/global-state/routing";
-import useFridge from "@/src/hooks/useFridge";
 import { useIsFocused } from "@react-navigation/core";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { StorageUnitRepository } from "@/src/database/repository/StorageUnitRepository";
+import { StorageUnit } from "@/src/types/entity";
 
-export default function FridgeScreen() {
-  const { fridges } = useFridge();
-
+export default function StorageUnitScreen() {
   const isFocused = useIsFocused();
+  const [storageUnits, setStorageUnits] = useState<StorageUnit[]>([]);
 
-  useEffect(() => {}, [isFocused]);
+  useEffect(() => {
+    if (!isFocused) return;
+
+    const storageUnitRepository = StorageUnitRepository.getInstance();
+
+    // storageUnitRepository.removeAll().then(() => {
+    //   console.log("removed all");
+    // });
+
+    storageUnitRepository.getAll().then(setStorageUnits);
+  }, [isFocused]);
 
   return (
     <View>
       <Stack.Screen options={{ title: "Übersicht" }} />
 
       <FlatList
-        data={fridges}
-        renderItem={({ item }) => <FridgeListItem fridge={item} />}
+        data={storageUnits}
+        renderItem={({ item }) => <StorageUnitListItem storageUnit={item} />}
         contentContainerStyle={styles.flatList}
       />
 
-      <Link href={"/(tabs)/fridge/create-fridge"} asChild>
+      <Link href={"/(tabs)/fridge/create-storage-unit"} asChild>
         <Button text={"Neuen Ort hinzufügen"} />
       </Link>
     </View>

@@ -1,7 +1,8 @@
 import { Dayjs } from "dayjs";
+import { BasicEntity } from "@/src/types/entity";
 
 export interface Fridge {
-  id: number;
+  id: string;
   location: string;
   description?: string;
   numberOfCompartments: number;
@@ -9,7 +10,7 @@ export interface Fridge {
 }
 
 export interface Product {
-  id: number;
+  id: string;
   barcode: string | null;
   name: string;
   amount: number;

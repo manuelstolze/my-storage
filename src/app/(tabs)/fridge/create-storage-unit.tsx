@@ -1,40 +1,31 @@
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Link, Stack, useNavigation } from "expo-router";
 import { useState } from "react";
 import Button from "@components/Button";
 import DisabledButton from "@components/DisabledButton";
-import { Fridge } from "@/src/types/fridge";
-import dayjs from "dayjs";
-import useFridge from "@/src/hooks/useFridge";
-import { randomInt } from "crypto";
+import { StorageType, StorageUnit } from "@/src/types/entity";
+import { StorageUnitRepository } from "@/src/database/repository/StorageUnitRepository";
 
-const CreateFridgeScreen = () => {
+const CreateStorageUnitScreen = () => {
   const navigation = useNavigation();
-  const { addFridge, fridges } = useFridge();
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [numberOfCompartments, setNumberOfCompartments] = useState("");
-
-  console.log(navigation);
 
   const handleOnPress = () => {
-    const newFridge: Fridge = {
-      location: name,
-      id: fridges.length + 1,
-      description: description,
-      numberOfCompartments: Number(numberOfCompartments),
-      createdAt: dayjs(),
-    };
+    const newStorageUnit = new StorageUnit(
+      name,
+      description,
+      StorageType.FRIDGE,
+    );
 
-    addFridge(newFridge);
-    navigation.popToTop();
+    const storageUnitRepository = StorageUnitRepository.getInstance();
+    storageUnitRepository.save(newStorageUnit);
+
+    navigation.goBack();
   };
 
-  const isDisabled =
-    name.length === 0 &&
-    description.length === 0 &&
-    numberOfCompartments.length === 0;
+  const isDisabled = name.length === 0 && description.length === 0;
 
   return (
     <View style={styles.container}>
@@ -56,15 +47,6 @@ const CreateFridgeScreen = () => {
         style={styles.input}
       />
 
-      <Text style={styles.label}>Anzahl von Fächern</Text>
-      <TextInput
-        value={numberOfCompartments}
-        onChangeText={setNumberOfCompartments}
-        keyboardType="numeric"
-        placeholder="Im Keller"
-        style={styles.input}
-      />
-
       {isDisabled ? (
         <DisabledButton text={"Hinzufügen"} />
       ) : (
@@ -78,7 +60,7 @@ const CreateFridgeScreen = () => {
   );
 };
 
-export default CreateFridgeScreen;
+export default CreateStorageUnitScreen;
 
 const styles = StyleSheet.create({
   container: {

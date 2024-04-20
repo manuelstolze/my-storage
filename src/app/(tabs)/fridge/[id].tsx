@@ -1,18 +1,16 @@
-import { FlatList, Text, View } from "react-native";
-import { Stack, useLocalSearchParams } from "expo-router";
-import fridgeDataset from "@assets/data/fridge";
-import { FridgeListItem } from "@components/fridge/FridgeListItem";
+import { FlatList, View } from "react-native";
+import { useLocalSearchParams } from "expo-router";
 import fridgeProducts from "@assets/data/fridgeProducts";
 import ProductListItem from "@components/fridge/ProductListItem";
 
 const ProductDetailsScreen = () => {
   const { id } = useLocalSearchParams();
 
-  const currentFridge = fridgeDataset.find((item) => item.id === Number(id));
+  //const currentFridge = fridgeDataset.find((item) => item.id === Number(id));
 
   return (
     <View>
-      <Stack.Screen options={{ title: currentFridge?.location }} />
+      {/*<Stack.Screen options={{ title: currentFridge?.location }} />*/}
 
       <FlatList
         data={fridgeProducts}

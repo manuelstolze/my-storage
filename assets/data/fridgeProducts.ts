@@ -5,14 +5,14 @@ const now = dayjs();
 
 const fridgeProducts: Product[] = [
   {
-    id: 1,
+    id: "1",
     barcode: null,
     name: "Zimt",
     amount: 1,
     expirationDate: now.subtract(1, "hour"),
   },
   {
-    id: 2,
+    id: "2",
     barcode: null,
     name: "Äpfel",
     amount: 3,

@@ -1,17 +1,17 @@
 import { Text, StyleSheet, Pressable } from "react-native";
 import { Link } from "expo-router";
-import { Fridge } from "@/src/types/fridge";
+import { StorageUnit } from "@/src/types/entity";
 
-interface FridgeListItemProps {
-  fridge: Fridge;
+interface StorageUnitListItem {
+  storageUnit: StorageUnit;
 }
 
-const FridgeListItem = ({ fridge }: FridgeListItemProps) => {
+const StorageUnitListItem = ({ storageUnit }: StorageUnitListItem) => {
   return (
-    <Link href={`/fridge/${fridge.id}`} asChild>
+    <Link href={`/fridge/${storageUnit.getId()}`} asChild>
       <Pressable style={styles.container}>
-        <Text style={styles.title}>{fridge.location}</Text>
-        <Text>{fridge.description}</Text>
+        <Text style={styles.title}>{storageUnit.getLocation()}</Text>
+        <Text>{storageUnit.getDescription()}</Text>
       </Pressable>
     </Link>
   );
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { FridgeListItem };
+export { StorageUnitListItem };
