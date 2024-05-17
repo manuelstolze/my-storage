@@ -38,13 +38,15 @@ class StorageUnitRepository implements BaseRepository<StorageUnit> {
     throw new Error("Method not implemented.");
   }
 
-  save(storageUnit: StorageUnit): void {
+  save(storageUnit: StorageUnit): string {
+    const uuid = Crypto.randomUUID();
+
     this.database.transaction((tx) => {
       try {
         tx.executeSql(
           `INSERT INTO storage_units (id, description, location, storageType) VALUES (?, ?, ?, ?);`,
           [
-            Crypto.randomUUID(),
+            uuid,
             storageUnit.getDescription(),
             storageUnit.getLocation(),
             storageUnit.getStorageType(),
@@ -55,6 +57,8 @@ class StorageUnitRepository implements BaseRepository<StorageUnit> {
         throw error; // This will cause the transaction to be rolled back.
       }
     });
+
+    return uuid;
   }
 
   update(storageUnit: StorageUnit): void {

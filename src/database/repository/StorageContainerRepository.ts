@@ -1,6 +1,5 @@
 import BaseRepository from "@/src/database/repository/BaseRepository";
 import { StorageContainer } from "@/src/types/entity/StorageContainer";
-import { intersect } from "@hapi/hoek";
 import { SQLiteDatabase } from "expo-sqlite";
 import DatabaseConnector from "@/src/database/database";
 
@@ -50,6 +49,31 @@ class StorageContainerRepository implements BaseRepository<StorageContainer> {
               (row) => new StorageContainer(row.name, []),
             );
             resolve(storageContainer);
+          },
+          (_, error) => {
+            reject(error);
+            return true;
+          },
+        );
+      });
+    });
+  }
+
+  getAllByStorageUnitId(storageUnitId: string): Promise<StorageContainer[]> {
+    return new Promise((resolve, reject) => {
+      this.database.transaction((tx) => {
+        tx.executeSql(
+          `SELECT * FROM storage_container WHERE storageUnitId = ?;`,
+          [storageUnitId],
+          (_, resultSet) => {
+            if (resultSet.rows._array.length === 0) {
+              resolve([]);
+            }
+
+            let storageContainers = resultSet.rows._array.map(
+              (row) => new StorageContainer(row.name, []),
+            );
+            resolve(storageContainers);
           },
           (_, error) => {
             reject(error);
