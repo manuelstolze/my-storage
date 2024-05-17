@@ -1,3 +1,5 @@
+
+```plantuml
 @startuml
 
 
@@ -63,5 +65,5 @@ Container "1" *-- "many" ProductItem: contains
 ProductItem "many" *-- "1" ProductType: has
 StorageUnit "many" *-- "1" StorageType: is
 
-
 @enduml
+```
