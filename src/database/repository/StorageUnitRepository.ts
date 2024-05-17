@@ -9,12 +9,6 @@ class StorageUnitRepository implements BaseRepository<StorageUnit> {
   private static instance: StorageUnitRepository;
   database: SQLiteDatabase;
 
-  // constructor() {
-  //   this.database = SQLite.openDatabase("storage-manager-app-test.db");
-  //   console.log(this.database);
-  //   this.createTable();
-  // }
-
   private constructor() {
     this.database = DatabaseConnector.getDatabase();
     this.createTable();

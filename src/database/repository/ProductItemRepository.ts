@@ -72,31 +72,46 @@ class ProductItemRepository {
   }
 
   getAll() {
-    // return new Promise((resolve, reject) => {
-    //   this.db.transaction((tx) => {
-    //     tx.executeSql(
-    //       "SELECT * FROM product_items",
-    //       [],
-    //       (_, resultSet) => {
-    //         let productItems = resultSet.rows._array.map(
-    //           (row) =>
-    //             new ProductItem(
-    //               row.name,
-    //               row.barcode,
-    //               row.productType,
-    //               row.amount,
-    //               row.expirationDate,
-    //             ),
-    //         );
-    //         resolve(productItems);
-    //       },
-    //       (_, error) => {
-    //         reject(error);
-    //         return true;
-    //       },
-    //     );
-    //   });
-    // });
+    return new Promise((resolve, reject) => {
+      this.db.transaction((tx) => {
+        tx.executeSql(
+          "SELECT * FROM product_items",
+          [],
+          (_, resultSet) => {
+            let productItems = resultSet.rows._array.map(
+              (row) =>
+                new ProductItem(
+                  row.name,
+                  row.barcode,
+                  row.productType,
+                  row.amount,
+                  row.expirationDate,
+                ),
+            );
+            resolve(productItems);
+          },
+          (_, error) => {
+            reject(error);
+            return true;
+          },
+        );
+      });
+    });
+  }
+
+  createTable(): void {
+    this.db.transaction((tx) => {
+      tx.executeSql(
+        `CREATE TABLE IF NOT EXISTS product_items (
+        id TEXT PRIMARY KEY NOT NULL,
+        name TEXT,
+        barcode TEXT,
+        productType TEXT,
+        amount INTEGER,
+        expirationDate TEXT
+      );`,
+      );
+    });
   }
 }
 

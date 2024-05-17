@@ -8,7 +8,10 @@ interface StorageUnitListItem {
 
 const StorageUnitListItem = ({ storageUnit }: StorageUnitListItem) => {
   return (
-    <Link href={`/fridge/${storageUnit.getId()}`} asChild>
+    <Link
+      href={`/fridge/${storageUnit.getId()}?name=${storageUnit.getLocation()}`}
+      asChild
+    >
       <Pressable style={styles.container}>
         <Text style={styles.title}>{storageUnit.getLocation()}</Text>
         <Text>{storageUnit.getDescription()}</Text>

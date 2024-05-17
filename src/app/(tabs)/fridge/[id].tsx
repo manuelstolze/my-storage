@@ -1,16 +1,39 @@
 import { FlatList, View } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import fridgeProducts from "@assets/data/fridgeProducts";
 import ProductListItem from "@components/fridge/ProductListItem";
+import { useEffect, useState } from "react";
+import { StorageUnitRepository } from "@/src/database/repository/StorageUnitRepository";
+import { useIsFocused } from "@react-navigation/core";
+import { StorageContainer } from "@/src/types/entity/StorageContainer";
+import StorageContainerRepository from "@/src/database/repository/StorageContainerRepository";
 
-const ProductDetailsScreen = () => {
-  const { id } = useLocalSearchParams();
+const StorageContainerOverviewScreen = () => {
+  const { id, name } = useLocalSearchParams();
+  const isFocused = useIsFocused();
+  const [storageContainers, setStorageContainers] = useState<
+    StorageContainer[]
+  >([]);
 
-  //const currentFridge = fridgeDataset.find((item) => item.id === Number(id));
+  // TODO: Fetch product details by storage_unit id from sqlite
+
+  // TODO: Add products into db
+
+  useEffect(() => {
+    if (!isFocused) return;
+
+    const storageContainerRepository = StorageContainerRepository.getInstance();
+
+    // storageUnitRepository.removeAll().then(() => {
+    //   console.log("removed all");
+    // });
+
+    storageContainerRepository.getAll().then(setStorageContainers);
+  }, [isFocused]);
 
   return (
     <View>
-      {/*<Stack.Screen options={{ title: currentFridge?.location }} />*/}
+      <Stack.Screen options={{ title: name as string }} />
 
       <FlatList
         data={fridgeProducts}
@@ -21,4 +44,4 @@ const ProductDetailsScreen = () => {
   );
 };
 
-export default ProductDetailsScreen;
+export default StorageContainerOverviewScreen;
