@@ -8,14 +8,14 @@ import { StorageUnitRepository } from "@/src/database/repository/StorageUnitRepo
 
 const CreateStorageUnitScreen = () => {
   const navigation = useNavigation();
-  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
 
-  const isDisabled = name.length === 0 && description.length === 0;
+  const isDisabled = location.length === 0 && description.length === 0;
 
   const handleOnPress = () => {
     const newStorageUnit = new StorageUnit(
-      name,
+      location,
       description,
       StorageType.FRIDGE,
     );
@@ -32,8 +32,8 @@ const CreateStorageUnitScreen = () => {
 
       <Text style={styles.label}>Name</Text>
       <TextInput
-        value={name}
-        onChangeText={setName}
+        value={location}
+        onChangeText={setLocation}
         placeholder="Tiefkühlschrank"
         style={styles.input}
       />
