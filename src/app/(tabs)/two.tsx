@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 import FridgeListItem from "@components/EditScreenInfo";
-import { Text, View } from "@/src/components/Themed";
+import { Text, View } from "@components/Themed";
 
 export default function TabTwoScreen() {
   return (

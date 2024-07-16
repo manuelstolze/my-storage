@@ -3,10 +3,10 @@ import { Link, Stack, useNavigation } from "expo-router";
 import { useState } from "react";
 import Button from "@components/Button";
 import DisabledButton from "@components/DisabledButton";
-import { StorageType, StorageUnit } from "@/src/types/entity";
-import { StorageUnitRepository } from "@/src/database/repository/StorageUnitRepository";
-import { StorageContainer } from "@/src/types/entity/StorageContainer";
-import StorageContainerRepository from "@/src/database/repository/StorageContainerRepository";
+import { StorageType, StorageUnit } from "../../../types/entity";
+import { StorageUnitRepository } from "../../../database/repository/StorageUnitRepository";
+import StorageContainerRepository from "../../../database/repository/StorageContainerRepository";
+import { StorageContainer } from "../../../types/entity/StorageContainer";
 
 const CreateStorageUnitScreen = () => {
   const navigation = useNavigation();

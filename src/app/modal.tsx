@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { Platform, StyleSheet } from "react-native";
 
 import FridgeListItem from "@components/EditScreenInfo";
-import { Text, View } from "@/src/components/Themed";
+import { View, Text } from "@components/Themed";
 
 export default function ModalScreen() {
   return (

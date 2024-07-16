@@ -1,6 +1,6 @@
-import { BasicEntity } from "@/src/types/entity/BasicEntity";
-import { StorageContainer } from "@/src/types/entity/StorageContainer";
-import StorageContainerRepository from "@/src/database/repository/StorageContainerRepository";
+import { BasicEntity } from "./BasicEntity";
+import { StorageContainer } from "./StorageContainer";
+import StorageContainerRepository from "../../database/repository/StorageContainerRepository";
 
 class StorageUnit extends BasicEntity {
   private description: string;

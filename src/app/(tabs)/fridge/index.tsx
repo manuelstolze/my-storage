@@ -4,8 +4,8 @@ import { StorageUnitListItem } from "@components/fridge/StorageUnitListItem";
 import Button from "@components/Button";
 import { useIsFocused } from "@react-navigation/core";
 import React, { useCallback, useEffect, useState } from "react";
-import { StorageUnitRepository } from "@/src/database/repository/StorageUnitRepository";
-import { StorageUnit } from "@/src/types/entity";
+import { StorageUnit } from "../../../types/entity";
+import { StorageUnitRepository } from "../../../database/repository/StorageUnitRepository";
 
 export default function StorageUnitScreen() {
   const isFocused = useIsFocused();

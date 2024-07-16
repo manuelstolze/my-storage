@@ -1,5 +1,4 @@
 import { Dayjs } from "dayjs";
-import { BasicEntity } from "@/src/types/entity";
 
 export interface Fridge {
   id: string;

@@ -9,7 +9,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { Buffer } from "buffer";
-import { useColorScheme } from "@/src/components/useColorScheme";
+import { useColorScheme } from "@components/useColorScheme";
 
 global.Buffer = Buffer;
 

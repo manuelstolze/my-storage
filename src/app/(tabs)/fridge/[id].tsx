@@ -3,10 +3,9 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import fridgeProducts from "@assets/data/fridgeProducts";
 import ProductListItem from "@components/fridge/ProductListItem";
 import { useEffect, useState } from "react";
-import { StorageUnitRepository } from "@/src/database/repository/StorageUnitRepository";
 import { useIsFocused } from "@react-navigation/core";
-import { StorageContainer } from "@/src/types/entity/StorageContainer";
-import StorageContainerRepository from "@/src/database/repository/StorageContainerRepository";
+import StorageContainerRepository from "../../../database/repository/StorageContainerRepository";
+import { StorageContainer } from "../../../types/entity/StorageContainer";
 
 const StorageContainerOverviewScreen = () => {
   const { id, name } = useLocalSearchParams();

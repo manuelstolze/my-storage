@@ -1,6 +1,6 @@
 import * as SQLite from "expo-sqlite";
-import { ProductItem } from "@/src/types/entity/ProductItem";
 import { SQLiteDatabase } from "expo-sqlite";
+import { ProductItem } from "../../types/entity/ProductItem";
 
 class ProductItemRepository {
   private db: SQLiteDatabase;

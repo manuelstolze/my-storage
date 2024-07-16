@@ -1,7 +1,7 @@
-import BaseRepository from "@/src/database/repository/BaseRepository";
-import { StorageContainer } from "@/src/types/entity/StorageContainer";
 import { SQLiteDatabase } from "expo-sqlite";
-import DatabaseConnector from "@/src/database/database";
+import DatabaseConnector from "../database";
+import BaseRepository from "./BaseRepository";
+import { StorageContainer } from "../../types/entity/StorageContainer";
 
 class StorageContainerRepository implements BaseRepository<StorageContainer> {
   private static instance: StorageContainerRepository;

@@ -1,4 +1,4 @@
-import { BasicEntity } from "@/src/types/entity";
+import { BasicEntity } from "./BasicEntity";
 import { Dayjs } from "dayjs";
 
 class ProductItem extends BasicEntity {

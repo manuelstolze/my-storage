@@ -1,5 +1,5 @@
-import { BasicEntity } from "@/src/types/entity/BasicEntity";
-import { ProductItem } from "@/src/types/entity/ProductItem";
+import { BasicEntity } from "./BasicEntity";
+import { ProductItem } from "./ProductItem";
 
 class StorageContainer extends BasicEntity {
   private name: string;
