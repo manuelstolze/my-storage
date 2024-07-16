@@ -1,6 +1,6 @@
 import { Text, StyleSheet, Pressable } from "react-native";
 import { Link } from "expo-router";
-import { StorageUnit } from "@/src/types/entity";
+import { StorageUnit } from "../../types/types";
 
 interface StorageUnitListItem {
   storageUnit: StorageUnit;
@@ -9,12 +9,12 @@ interface StorageUnitListItem {
 const StorageUnitListItem = ({ storageUnit }: StorageUnitListItem) => {
   return (
     <Link
-      href={`/fridge/${storageUnit.getId()}?name=${storageUnit.getLocation()}`}
+      href={`/fridge/${storageUnit.id}?name=${storageUnit.location}`}
       asChild
     >
       <Pressable style={styles.container}>
-        <Text style={styles.title}>{storageUnit.getLocation()}</Text>
-        <Text>{storageUnit.getDescription()}</Text>
+        <Text style={styles.title}>{storageUnit.description}</Text>
+        <Text>{storageUnit.location}</Text>
       </Pressable>
     </Link>
   );

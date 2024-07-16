@@ -1,9 +1,8 @@
-import BaseRepository from "@/src/database/repository/BaseRepository";
-
-import { StorageUnit } from "@/src/types/entity";
 import * as Crypto from "expo-crypto";
-import DatabaseConnector from "@/src/database/database";
 import { SQLiteDatabase } from "expo-sqlite";
+import BaseRepository from "./BaseRepository";
+import { StorageUnit } from "../../types/entity";
+import DatabaseConnector from "../database";
 
 class StorageUnitRepository implements BaseRepository<StorageUnit> {
   private static instance: StorageUnitRepository;
@@ -22,7 +21,7 @@ class StorageUnitRepository implements BaseRepository<StorageUnit> {
   }
 
   createTable(): void {
-    this.database.transaction((tx) => {
+    /* this.database.transaction((tx) => {
       tx.executeSql(
         `CREATE TABLE IF NOT EXISTS storage_units (
           id TEXT PRIMARY KEY NOT NULL,
@@ -31,7 +30,7 @@ class StorageUnitRepository implements BaseRepository<StorageUnit> {
           storageType TEXT
         );`,
       );
-    });
+    });*/
   }
 
   delete(): void {
@@ -44,7 +43,7 @@ class StorageUnitRepository implements BaseRepository<StorageUnit> {
     this.database.transaction((tx) => {
       try {
         tx.executeSql(
-          `INSERT INTO storage_units (id, description, location, storageType) VALUES (?, ?, ?, ?);`,
+          `INSERT INTO StorageUnit (id, description, location, storageType) VALUES (?, ?, ?, ?);`,
           [
             uuid,
             storageUnit.getDescription(),
@@ -64,7 +63,7 @@ class StorageUnitRepository implements BaseRepository<StorageUnit> {
   update(storageUnit: StorageUnit): void {
     this.database.transaction((tx) => {
       tx.executeSql(
-        `UPDATE storage_units SET description = ?, location = ?, storageType = ? WHERE id = ?;`,
+        `UPDATE StorageUnit SET description = ?, location = ?, storageType = ? WHERE id = ?;`,
         [
           storageUnit.getDescription(),
           storageUnit.getLocation(),
@@ -79,7 +78,7 @@ class StorageUnitRepository implements BaseRepository<StorageUnit> {
     return new Promise((resolve, reject) => {
       this.database.transaction((tx) => {
         tx.executeSql(
-          `SELECT * FROM storage_units;`,
+          `SELECT * FROM StorageUnit;`,
           [],
           (_, resultSet) => {
             if (resultSet.rows._array.length === 0) {
